@@ -2,8 +2,10 @@ const express = require("express");
 
 const router = express.Router();
 
-const {healthCheck} = require("../controllers/healthController");
+const { healthCheck } = require("../controllers/healthController");
 
-router.get("/health",healthCheck);
+const asyncHandler = require("../middleware/asyncHandler");
 
-module.exports= router;
+router.get("/health", asyncHandler(healthCheck));
+
+module.exports = router;
